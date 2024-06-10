@@ -3,6 +3,22 @@ import Image from "next/image";
 import {getMeal} from "@/lib/meals";
 import {notFound} from "next/navigation";
 
+// generate metadata for generic pages
+export async function generateMetadata({params}) {
+    const meal = getMeal(params.slug)
+
+    // if (!meal) {
+    //     // call the nearest not found or error page
+    //     notFound()
+    // }
+
+    // return metadata object
+    return {
+        title: meal.title,
+        description: meal.summary
+    }
+}
+
 export default function MealDetailsPage({params}) {
     const meal = getMeal(params.slug)
 
